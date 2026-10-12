@@ -1,0 +1,43 @@
+﻿Phần 1
+1. Get-Content .\logs\server.log
+2. Notepad nạp 500MB vào RAM (dễ treo); PowerShell dùng streaming tiết kiệm RAM.
+3. Get-ChildItem -Recurse -Filter "*.log"
+Phần 2
+4.Get-Content .\logs\server.log | Select-String "ERROR"
+
+
+5
+Câu hỏi
+	Lệnh PowerShell
+	"File server.log đang nằm ở thư mục nào?" (tìm file)
+	Get-ChildItem -Recurse -Filter "server.log"
+	"Bên trong file này có dòng nào chứa lỗi 404 không?" (tìm nội dung)
+	Select-String "404" .\logs\server.log
+	
+
+   * Pipe: Get-Content .\logs\server.log | Select-String "404"
+
+
+6.Get-ChildItem -Recurse -Filter "*.log" | Select-String "INFO" -NotMatch
+Phần 3
+7. Get-Content .\logs\server.log | Select-String "404" > .\reports\daily_report.txt
+Dùng >> (ghi nối). Lỡ dùng > sẽ xóa sạch báo cáo cũ.
+8.   Write-Output "10:42:18 ERROR 404 Not Found /api/products" >> .\reports\daily_report.txt
+Phần 4
+9.Write-Output "Dang loc log..."
+ Write-Output "=== LOG REPORT ===" > .\reports\daily_report.txt
+
+
+10.
+# Script bao cao cac loi 404
+Write-Output "Dang loc log..."
+Write-Output "=== LOG REPORT ===" > .\reports\daily_report.txt
+Get-Content .\logs\server.log | Select-String "404" >> .\reports\daily_report.txt
+Phần 5
+11. Đứng đúng vị trí :cd C:\Users\devops-lab
+Chạy: .\scripts\auto_report.ps1 |
+ Kiểm tra: Get-Content .\reports\daily_report.txt
+12.
+(a) Remove-Item C:\* : 
+Hậu quả : xóa sạch ổ hệ thống.
+(b) Sửa an toàn:Remove-Item -Recurse -Force .\temp\*
